@@ -41,5 +41,25 @@
       </ul>
     </main>
   </div>
+  <script>
+    fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('apod-container');
+        if (data.media_type === 'image') {
+          const img = document.createElement('img');
+          img.src = data.url;
+          img.alt = data.title;
+
+          const title = document.createElement('p');
+          title.textContent = data.title;
+
+          container.appendChild(img);
+          container.appendChild(title);
+        } else {
+          container.innerHTML = `<p>Today's media is not an image.</p>`;
+        }
+      });
+  </script>
 </body>
 </html>
