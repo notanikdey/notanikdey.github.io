@@ -41,26 +41,30 @@
       </ul>
     </main>
   </div>
-  <script src='env.js'></script>
-  <script>
-    fetch('https://api.nasa.gov/planetary/apod?api_key=${API_KEY}')
-      .then(res => res.json())
-      .then(data => {
-        const container = document.getElementById('apod-container');
-        if (data.media_type === 'image') {
-          const img = document.createElement('img');
-          img.src = data.url;
-          img.alt = data.title;
 
-          const title = document.createElement('p');
-          title.textContent = data.title;
+<div id="apod-container"></div>
+<script src="env.js"></script>
+<script>
+  fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById('apod-container');
+      if (!container) return;
 
-          container.appendChild(img);
-          container.appendChild(title);
-        } else {
-          container.innerHTML = `<p>Today's media is not an image.</p>`;
-        }
-      });
-  </script>
+      if (data.media_type === 'image') {
+        const img = document.createElement('img');
+        img.src = data.url;
+        img.alt = data.title;
+
+        const title = document.createElement('p');
+        title.textContent = data.title;
+
+        container.appendChild(img);
+        container.appendChild(title);
+      } else {
+        container.innerHTML = `<p>Today's media is not an image.</p>`;
+      }
+    });
+</script>
 </body>
 </html>
