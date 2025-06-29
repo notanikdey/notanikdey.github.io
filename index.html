@@ -23,6 +23,7 @@
         </ul>
       </nav>
     </aside>
+
     <main class="content">
       <h1>Hi, I'm Anik</h1>
 
@@ -40,30 +41,34 @@
         <li>India and how she makes her mark in the changing global order</li>
       </ul>
     </main>
+
+    <section class="apod">
+      <h3>NASA Astronomy Picture of the Day</h3>
+      <div id="apod-container"></div>
+    </section>
   </div>
 
-<div id="apod-container"></div>
-<script>
-  fetch(`https://api.nasa.gov/planetary/apod?api_key=P0rp2IrrFwIOq17qq8UG6blGs3PQoDitSLmVYJQm`)
-    .then(res => res.json())
-    .then(data => {
-      const container = document.getElementById('apod-container');
-      if (!container) return;
+  <script>
+    fetch(`https://api.nasa.gov/planetary/apod?api_key=P0rp2IrrFwIOq17qq8UG6blGs3PQoDitSLmVYJQm`)
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('apod-container');
+        if (!container) return;
 
-      if (data.media_type === 'image') {
-        const img = document.createElement('img');
-        img.src = data.url;
-        img.alt = data.title;
+        if (data.media_type === 'image') {
+          const img = document.createElement('img');
+          img.src = data.url;
+          img.alt = data.title;
 
-        const title = document.createElement('p');
-        title.textContent = data.title;
+          const title = document.createElement('p');
+          title.textContent = data.title;
 
-        container.appendChild(img);
-        container.appendChild(title);
-      } else {
-        container.innerHTML = `<p>Today's media is not an image.</p>`;
-      }
-    });
-</script>
+          container.appendChild(img);
+          container.appendChild(title);
+        } else {
+          container.innerHTML = `<p>Today's media is not an image.</p>`;
+        }
+      });
+  </script>
 </body>
 </html>
