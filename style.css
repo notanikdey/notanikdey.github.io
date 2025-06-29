@@ -94,10 +94,12 @@ body {
 }
 
 .apod img {
-  max-width: 100%;
+  width: 100%;
+  max-width: 250px;
   height: auto;
   border-radius: 8px;
   margin-bottom: 10px;
+  object-fit: cover;
 }
 
 .apod p {
