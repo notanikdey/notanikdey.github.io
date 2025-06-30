@@ -5,7 +5,6 @@
   box-sizing: border-box;
 }
 
-
 /* Global Styles */
 body {
   font-family: Georgia, serif;
@@ -20,20 +19,19 @@ body {
 .container {
   display: flex;
   min-height: 100vh;
-  gap: 24px;
+  gap: 0; /* ✅ Removed gap */
   padding: 0;
 }
 
 /* Sidebar styles */
 .sidebar {
   width: 240px;
-  padding: 40px 20px;
+  padding: 20px 20px 40px 20px; /* ✅ Reduced top padding from 40px to 20px */
   background-color: #f8f8f8;
   border-right: 1px solid #e0e0e0;
 }
 
-.sidebar h3,
-.sidebar h4 {
+.sidebar h3, .sidebar h4 {
   margin-top: 0;
   font-size: 14px;
   text-transform: uppercase;
@@ -62,7 +60,7 @@ body {
 /* Main content styles */
 .content {
   flex: 1;
-  padding: 20px 0;
+  padding: 20px 20px 20px 24px; /* ✅ Added left padding to create space from sidebar */
 }
 
 .content h1 {
@@ -86,19 +84,17 @@ body {
   width: 600px;
   padding: 20px;
   border-radius: 8px;
-
+  
   /* 🚫 No shadow or border to remove divider */
   box-shadow: none;
   border: none;
-
+  
   /* ✅ Center image and text */
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
-
-
 
 .apod h3 {
   margin-top: 0;
@@ -115,7 +111,6 @@ body {
   margin-bottom: 10px;
   object-fit: cover;
 }
-
 
 .apod p {
   margin: 0;
